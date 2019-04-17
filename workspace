@@ -1,0 +1,59 @@
+#!/bin/bash
+
+cur_ws="`wmctrl -d | grep '*'`"
+cur_ws=${cur_ws: -1}
+
+Y='\033[0;33m'
+N='\033[0m'
+
+show_help(){
+	echo "${Y}usage>{N}: workspace --switch up/down"
+}
+
+inv_par(){
+	echo -e "${Y}ERR>${N} invalid args"
+}
+
+case "$#" in
+	"0")
+		show_help
+		;;
+
+	"1")
+		case "$1" in
+			"-h"|"--help")
+				show_help
+				;;
+
+			"-s"|"--show")
+				echo -e "${Y}INFO>${N} currently on workspace $cur_ws"
+				;;
+			*)
+				inv_par
+				;;
+		esac
+		;;
+
+	"2")
+		case "$1" in
+			"-s"|"--switch")
+				case "$2" in
+					"u"|"up")
+						wmctrl -s $((cur_ws-2))
+						;;
+
+					"d"|"down")
+						wmctrl -s $((cur_ws))
+						;;
+
+					*)
+						inv_par
+						;;
+				esac
+		esac
+		;;
+
+	*)
+		inv_par
+		;;
+esac
