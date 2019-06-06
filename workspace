@@ -7,7 +7,7 @@ Y='\033[0;33m'
 N='\033[0m'
 
 show_help(){
-	echo -e "${Y}usage>${N}: workspace --switch up/down"
+	echo -e "${Y}usage>${N} workspace --switch up/down"
 }
 
 inv_par(){
@@ -25,6 +25,14 @@ case "$#" in
 				show_help
 				;;
 
+			"-gn"|"--go-next")
+				bspc node -d $(($cur_ws+1))
+				;;
+
+			"-gp"|"--go-previous")
+				bspc node -d $(($cur_ws-1))
+				;;
+
 			"-s"|"--show")
 				echo -e "${Y}INFO>${N} currently on workspace $cur_ws"
 				;;
@@ -38,11 +46,11 @@ case "$#" in
 		case "$1" in
 			"-s"|"--switch")
 				case "$2" in
-					"u"|"up")
+					"n"|"next")
 						wmctrl -s $((cur_ws-2))
 						;;
 
-					"d"|"down")
+					"p"|"previous")
 						wmctrl -s $((cur_ws))
 						;;
 
