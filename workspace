@@ -7,7 +7,7 @@ Y='\033[0;33m'
 N='\033[0m'
 
 show_help(){
-	echo -e "${Y}usage>${N} workspace --switch up/down"
+	echo -e "${Y}usage>${N} workspace --switch next/previous"
 }
 
 inv_par(){
