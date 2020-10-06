@@ -47,11 +47,11 @@ case "$#" in
 			"-s"|"--switch")
 				case "$2" in
 					"n"|"next")
-						wmctrl -s $((cur_ws-2))
+						bspc desktop --focus next
 						;;
 
 					"p"|"previous")
-						wmctrl -s $((cur_ws))
+						bspc desktop --focus prev
 						;;
 
 					*)
